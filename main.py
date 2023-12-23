@@ -6,18 +6,34 @@ pygame.init()
 
 # Constants
 WIDTH, HEIGHT = 600, 600
-CELL_SIZE = 50
+CELL_SIZE = 60
 ROWS, COLS = HEIGHT // CELL_SIZE, WIDTH // CELL_SIZE
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-
+BROWN = (165, 42, 42)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("shove it")
 
 def draw_game_board(game_board):
-    for row in range(ROWS):
-        for col in range(COLS):
-            color = WHITE if (row + col) % 2 == 0 else BLACK
+    print(game_board)
+    for row in range(len(game_board)):
+        for col in range(len(game_board[row])):
+            print(col)
+            symbol = game_board[row][col]
+            if symbol == '/':
+                color = BLACK
+            elif symbol == 'B':
+                color = BROWN
+            elif symbol == '.':
+                color = RED     
+            elif symbol == 'P':
+                color = GREEN 
+            elif symbol == ' ':
+                color = WHITE 
+            
+            print(color)   
             pygame.draw.rect(screen, color, (col * CELL_SIZE, row * CELL_SIZE, CELL_SIZE, CELL_SIZE))
  
 def read_game_board(file_path):
